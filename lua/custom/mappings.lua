@@ -12,7 +12,7 @@ M.general = {
 
 M.telescope = {
   n = {
-    ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "find document symbols" },
+    ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols symbol_width=50 <CR>", "find document symbols" },
   },
 }
 
