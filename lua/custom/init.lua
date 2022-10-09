@@ -10,17 +10,17 @@ opt.swapfile = false
 
 opt.scrolloff = 10
 opt.relativenumber = true
-opt.wrap = false
 
 g.VM_show_warnings = 0
+g.VM_default_mappings = 0
 g.VM_maps = {
-  ["Find Under"] = "<A-n>",
-  ["Find Subword Under"] = "<A-n>",
+  ["Find Under"] = "gb",
+  ["Find Subword Under"] = "gb",
 }
 
 autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
-    vim.lsp.buf.formatting_sync()
+    vim.lsp.buf.format { async = false }
   end,
 })

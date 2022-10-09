@@ -1,65 +1,64 @@
+local override = require "custom.plugins.configs.override"
+
 return {
   -- LSP
   ["neovim/nvim-lspconfig"] = {
     config = function()
       require "plugins.configs.lspconfig"
-      require "custom.plugins.lspconfig"
+      ---@diagnostic disable-next-line: different-requires
+      require "custom.plugins.configs.lspconfig"
     end,
-  },
-  ["williamboman/mason.nvim"] = {
-    override_options = {
-      ensure_installed = {
-        "lua-language-server",
-        "stylua",
-        "gopls",
-        "goimports",
-        "shfmt",
-        "shellcheck",
-      },
-    },
   },
   ["jose-elias-alvarez/null-ls.nvim"] = {
     after = "nvim-lspconfig",
     config = function()
-      require "custom.plugins.null-ls"
+      require "custom.plugins.configs.null-ls"
     end,
   },
+  ["williamboman/mason.nvim"] = { override_options = override.mason },
 
   -- UI
   ["goolord/alpha-nvim"] = { disable = false },
   ["folke/which-key.nvim"] = { disable = false },
-  ["NvChad/ui"] = {
-    override_options = {
-      statusline = { separator_style = "block" },
-    },
-  },
+  ["NvChad/ui"] = { override_options = override.ui },
 
   -- Git
-  ["lewis6991/gitsigns.nvim"] = {
-    override_options = { current_line_blame = true },
-  },
+  ["lewis6991/gitsigns.nvim"] = { override_options = override.gitsigns },
 
   -- Treesitter
-  ["nvim-treesitter/nvim-treesitter"] = {
-    override_options = {
-      ensure_installed = {
-        "lua",
-        "go",
-        "gomod",
-        "gowork",
-      },
-    },
+  ["nvim-treesitter/nvim-treesitter"] = { override_options = override.treesitter },
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = { after = "nvim-treesitter" },
+  ["nvim-treesitter/nvim-treesitter-context"] = {
+    after = "nvim-treesitter",
+    config = function()
+      require "custom.plugins.configs.ts-ctx"
+    end,
   },
 
   -- Editor
   ["abecodes/tabout.nvim"] = {
-    after = { "nvim-treesitter", "nvim-cmp" },
+    opt = true,
+    event = "InsertEnter",
+    wants = "nvim-treesitter",
+    after = "nvim-cmp",
     config = function()
-      require("tabout").setup()
+      require "custom.plugins.configs.tabout"
     end,
   },
-  ["easymotion/vim-easymotion"] = {},
-  ["tpope/vim-surround"] = {},
-  ["justinmk/vim-sneak"] = {},
-  ["mg979/vim-visual-multi"] = {},
+  ["phaazon/hop.nvim"] = {
+    opt = true,
+    event = "BufReadPost",
+    branch = "v2",
+    config = function()
+      require "custom.plugins.configs.hop"
+    end,
+  },
+  ["mg979/vim-visual-multi"] = {
+    opt = true,
+    event = "BufReadPost",
+  },
+  ["tpope/vim-surround"] = {
+    opt = true,
+    event = "BufReadPost",
+  },
 }

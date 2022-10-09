@@ -6,9 +6,15 @@ end
 
 local b = null_ls.builtins
 
+local goimports = b.formatting.goimports
+local e = os.getenv "GOIMPORTS_LOCAL"
+if e ~= nil then
+  goimports = goimports.with { extra_args = { "-local", e } }
+end
+
 local sources = {
   -- Go
-  b.formatting.goimports,
+  goimports,
 
   -- Lua
   b.formatting.stylua,
@@ -19,6 +25,6 @@ local sources = {
 }
 
 null_ls.setup {
-  debug = true,
+  debug = false,
   sources = sources,
 }
