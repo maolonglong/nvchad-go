@@ -2,6 +2,11 @@ local M = {}
 
 M.ui = {
   statusline = { separator_style = "block" },
+
+  tabufline = {
+    enabled = true,
+    lazyload = false,
+  },
 }
 
 M.gitsigns = {
@@ -36,12 +41,10 @@ M.treesitter = {
       enable = true,
       set_jumps = true,
       goto_next_start = {
-        ["]f"] = "@function.outer",
-        ["]c"] = "@class.outer",
+        ["]]"] = "@function.outer",
       },
       goto_previous_start = {
-        ["[f"] = "@function.outer",
-        ["[c"] = "@class.outer",
+        ["[["] = "@function.outer",
       },
     },
   },

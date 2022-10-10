@@ -21,6 +21,13 @@ return {
   ["goolord/alpha-nvim"] = { disable = false },
   ["folke/which-key.nvim"] = { disable = false },
   ["NvChad/ui"] = { override_options = override.ui },
+  ["dstein64/nvim-scrollview"] = {
+    opt = true,
+    event = { "BufReadPost" },
+    config = function()
+      require "custom.plugins.configs.scrollview"
+    end,
+  },
 
   -- Git
   ["lewis6991/gitsigns.nvim"] = { override_options = override.gitsigns },
@@ -31,7 +38,7 @@ return {
   ["nvim-treesitter/nvim-treesitter-context"] = {
     after = "nvim-treesitter",
     config = function()
-      require "custom.plugins.configs.ts-ctx"
+      require "custom.plugins.configs.treesitter-context"
     end,
   },
 
@@ -56,8 +63,43 @@ return {
   ["mg979/vim-visual-multi"] = {
     opt = true,
     event = "BufReadPost",
+    setup = function()
+      require "custom.plugins.configs.visual-multi"
+    end,
   },
   ["tpope/vim-surround"] = {
+    opt = true,
+    event = "BufReadPost",
+  },
+  ["RRethy/vim-illuminate"] = {
+    opt = true,
+    event = "BufReadPost",
+    config = function()
+      require "custom.plugins.configs.illuminate"
+    end,
+  },
+  ["karb94/neoscroll.nvim"] = {
+    opt = true,
+    event = "BufReadPost",
+    config = function()
+      require "custom.plugins.configs.neoscroll"
+    end,
+  },
+  ["max397574/better-escape.nvim"] = {
+    opt = true,
+    event = "BufReadPost",
+    config = function()
+      require "custom.plugins.configs.better-escape"
+    end,
+  },
+  ["rainbowhxch/accelerated-jk.nvim"] = {
+    opt = true,
+    event = "BufWinEnter",
+    config = function()
+      require "custom.plugins.configs.accelerated-jk"
+    end,
+  },
+  ["hrsh7th/vim-eft"] = {
     opt = true,
     event = "BufReadPost",
   },
