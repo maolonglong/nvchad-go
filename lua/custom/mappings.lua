@@ -4,8 +4,8 @@ M.eft = {
   n = {
     f = { "<Plug>(eft-f)", "eft-f" },
     F = { "<Plug>(eft-F)", "eft-F" },
-    t = { "<Plug>(eft-f)", "eft-t" },
-    T = { "<Plug>(eft-f)", "eft-T" },
+    t = { "<Plug>(eft-t)", "eft-t" },
+    T = { "<Plug>(eft-T)", "eft-T" },
     [";"] = { "<Plug>(eft-repeat)", "eft-repeat" },
   },
 }
