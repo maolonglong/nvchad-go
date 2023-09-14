@@ -1,27 +1,19 @@
 local M = {}
 
-M.ui = {
-  statusline = { separator_style = "block" },
-
-  tabufline = {
-    enabled = true,
-    lazyload = false,
-  },
-}
-
-M.gitsigns = {
-  current_line_blame = true,
-}
-
 M.treesitter = {
   ensure_installed = {
+    "vim",
+    "lua",
+    "markdown",
+    "markdown_inline",
     "bash",
     "go",
     "gomod",
+    "gosum",
     "gowork",
+    "thrift",
+    "proto",
     "json",
-    "lua",
-    "make",
     "yaml",
   },
 
@@ -52,13 +44,38 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
+    -- lua stuff
     "lua-language-server",
     "stylua",
+
+    -- go stuff
     "gopls",
     "goimports",
+
+    -- bash stuff
     "shfmt",
-    "shellcheck",
+    "shellcheck"
   },
+}
+
+-- git support in nvimtree
+M.nvimtree = {
+  git = {
+    enable = true,
+  },
+
+  renderer = {
+    highlight_git = true,
+    icons = {
+      show = {
+        git = true,
+      },
+    },
+  },
+}
+
+M.gitsigns = {
+  current_line_blame = true,
 }
 
 return M

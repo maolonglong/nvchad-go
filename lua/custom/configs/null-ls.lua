@@ -13,11 +13,11 @@ if e ~= nil then
 end
 
 local sources = {
-  -- Go
-  goimports,
-
   -- Lua
   b.formatting.stylua,
+
+  -- Go
+  goimports,
 
   -- Shell
   b.formatting.shfmt,
